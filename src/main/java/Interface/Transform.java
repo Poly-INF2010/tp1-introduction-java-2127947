@@ -12,8 +12,17 @@ public class Transform implements Rotate, Translate{
      * @param angle
      * @return rotated collection
      * */
+    public Transform() {
+    }
     public Collection<Point2d> rotate(Collection<Point2d> coords, Double angle) {
-        return null;
+        Iterator var3 = coords.iterator();
+
+        while(var3.hasNext()) {
+            Point2d pointDD = (Point2d)var3.next();
+            pointDD.rotate(angle);
+        }
+
+        return coords;
     }
 
     /** TODO
@@ -23,6 +32,13 @@ public class Transform implements Rotate, Translate{
      * @return translated coords
      * */
     public Collection<Point2d> translate(Collection<Point2d> coords, Point2d translateVector) {
-        return null;
+        Iterator var3 = coords.iterator();
+
+        while(var3.hasNext()) {
+            Point2d pointDD = (Point2d)var3.next();
+            pointDD.translate(translateVector);
+        }
+
+        return coords;
     }
 }
