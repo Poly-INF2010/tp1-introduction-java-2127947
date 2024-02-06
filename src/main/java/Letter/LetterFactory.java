@@ -102,9 +102,6 @@ public final class LetterFactory {
         Point2d p = new Point2d(15.0, 0.0);
         Point2d p2 = new Point2d(15.0, 71.0);
         Point2d p3 = new Point2d(15.0, -71.0);
-        //a simplifie avec clone
-
-        //r1.translate(r1.getCoords(), p.multiply(-8.0));
 
         r2.translate(r2.getCoords(), p);
         r3.translate(r3.getCoords(), p2);
