@@ -119,7 +119,7 @@ public final class LetterFactory {
     public static BaseShape create_H() {
         Rectangle r1 = new Rectangle(halfStripeThickness, maxHeight);
         Rectangle r2 = new Rectangle(halfStripeThickness, maxHeight);
-        Rectangle r3 = new Rectangle(stripeThickness, halfStripeThickness);
+        Rectangle r3 = new Rectangle((stripeThickness+halfStripeThickness), halfStripeThickness);
 
         Double[] v1 = {-15.0, 0.0};
         Double[] v2 = {15.0, 0.0};
@@ -168,7 +168,7 @@ public final class LetterFactory {
      * @return BaseShape containing the letter O
      */
     public static BaseShape create_O() {
-        return new Ellipse(maxWidth+halfMaxWidth, maxHeight)
+        return new Ellipse((maxWidth+halfMaxWidth), maxHeight)
                 .remove(new Ellipse((maxWidth+halfStripeThickness), (2*stripeThickness + halfMaxHeight+halfStripeThickness)));
     }
 
