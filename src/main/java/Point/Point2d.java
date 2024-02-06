@@ -1,39 +1,36 @@
 package Point;
 
 public class Point2d extends AbstractPoint {
-    private static final int X = 0;
-    private static final int Y = 1;
+    private final Integer X = 0;
+    private final Integer Y = 1;
 
     /** TODO
      * 2D Point Constructor from coordinates
      * @param x X coordinate
      * @param y Y coordinate
      */
-    public Point2d(double x, double y) {
-        super(new double[]{x, y});
+    public Point2d(Double x, Double y) {
+        super(new double[] {x, y});
     }
+
 
     /** TODO
      * 2D Point Constructor from vector
      * @param vector Vector containing X and Y coordinates
      */
-    public Point2d(double[] vector) {
-        super(vector);
+    public Point2d(Double[] vector) {
+        this(vector[0],vector[1]);
     }
 
     /**
      * @return X coordinate
      */
-    public double getX() {
-        return vector[X];
-    }
+    public double X() { return vector[X];}
 
     /**
      * @return Y coordinate
      */
-    public double getY() {
-        return vector[Y];
-    }
+    public double Y() { return vector[Y];}
 
     /** TODO
      * Translate the point by the given vector
@@ -41,20 +38,88 @@ public class Point2d extends AbstractPoint {
      * @return Translated point
      */
     @Override
-    public Point2d translate(double[] translateVector) {
-        if (translateVector.length != 2) {
-            throw new IllegalArgumentException("Translate vector must have two components");
-        }
-        return new Point2d(vector[X] + translateVector[X], vector[Y] + translateVector[Y]);
+    public Point2d translate(Double[] translateVector) {
+        PointOperator.translate(vector,translateVector);
+        return this;
     }
 
-    // Other methods...
+    /** TODO
+     * Translate the point by the given 2D Point
+     * @param translateVector The 2D Point by which to translate
+     * @return Translated point
+     */
+    public Point2d translate(Point2d translateVector) {
+        PointOperator.translate(vector,translateVector.vector);
+        return this;
+    }
+
+    /** TODO
+     * Rotate the point by the given rotation Matrix
+     * @param rotationMatrix Matrix by which to rotate
+     * @return Rotated point
+     */
+    @Override
+    public Point2d rotate(Double[][] rotationMatrix) {
+        PointOperator.rotate(vector,rotationMatrix);
+        return this;
+    }
+
+    /** TODO
+     * Rotate the point by the given angle
+     * @param angle Angle in radians
+     * @return Rotated point
+     */
+    public Point2d rotate(Double angle) {
+
+
+
+        double newX = this.vector[0]  * Math.cos(angle) - this.vector[1] * Math.sin(angle);
+        double newY = this.vector[0]  * Math.sin(angle) + this.vector[1] * Math.cos(angle);
+
+        this.vector[0] = newX;
+        this.vector[1] = newY;
+
+        return this;
+    }
+
+    /** TODO
+     * Divide the X and Y coordinates of a 2D point by a scalar
+     * @param divider Scalar used to divide
+     * @return Divided point
+     */
+    @Override
+    public Point2d divide(Double divider) {
+        PointOperator.divide(this.vector,divider);
+        return this;
+    }
+
+    /** TODO
+     * Multiply the X and Y coordinates of a 2D point by a scalar
+     * @param multiplier Scalar used to multiply
+     * @return Multiplied point
+     */
+    @Override
+    public Point2d multiply(Double multiplier) {
+        PointOperator.multiply(this.vector,multiplier);
+        return this;
+    }
+
+    /** TODO
+     * Add a scalar to the X and Y coordinates of a 2D point
+     * @param adder Scalar to add
+     * @return Added point
+     */
+    @Override
+    public Point2d add(Double adder) {
+        PointOperator.add(this.vector,adder);
+        return this;
+    }
 
     /** TODO
      * @return Deep copy of the 2D point
      */
     @Override
     public Point2d clone() {
-        return new Point2d(vector[X], vector[Y]);
+        return new Point2d(vector);
     }
 }
